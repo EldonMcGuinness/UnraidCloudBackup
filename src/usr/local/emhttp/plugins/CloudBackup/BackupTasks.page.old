@@ -1,0 +1,6 @@
+Menu="CloudBackup"
+Title="Backup Tasks"
+Tabs="false"
+Type="xmenu"
+Icon="cloud"
+---

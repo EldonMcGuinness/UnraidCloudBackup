@@ -1,0 +1,133 @@
+Menu="CloudBackup:2"
+Title="New Task"
+Tag="table"
+Markdown="false"
+---
+<?
+#Pull some default data
+libxml_use_internal_errors(true); # Suppress any warnings from xml errors.
+
+$scriptName = "CloudBackup";
+$docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
+$pluginRoot = "$docroot/plugins/$scriptName";
+$httpPluginRoot = "/plugins/$scriptName";
+
+// Include Rclone tools
+include_once( "./plugins/$scriptName/includes/rclone.php" );
+
+Rclone::load();
+// Source | Destination | Provider | Schedule | Extras
+?>
+
+<link rel="stylesheet" href="<?=$httpPluginRoot?>/includes/style.css"></style>
+<script type="text/javascript" src="<?=$httpPluginRoot?>/includes/GUI.js"></script>
+
+<div class="inner-wrapper">
+    <div class="row">
+        <div class="col-25">
+            Source (Local Path)
+        </div>
+        <div class="col-75">
+            <input type="text" id="source" name="source" placeholder="Ex. /mnt/user/Share1">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            Destination (Remote Path)
+        </div>
+        <div class="col-75">
+            <input type="text" id="destination" name="destination" placeholder="Ex. /Documents/">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            Provider
+        </div>
+        <div class="col-75">
+            <select id="provider" name="provider">
+                <?php foreach( Rclone::$rcloneConfig as $key => $var) : ?>
+                <option value="<?=$key?>"><?=$key?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            Action
+        </div>
+        <div class="col-75">
+            <select id="action" name="action">
+                <option value="copy">Backup (Copy)</option>
+                <option value="move">Archive (Move)</option>
+                <option value="bisync">Sync (Both Ways)</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            Schedule (Cron Based)
+        </div>
+        <div class="col-75">
+            <input type="text" id="schedule" name="schedule" placeholder="Ex. 0 1 * * * *">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            Extras
+        </div>
+        <div class="col-75">
+            <input type="text" id="extras" name="extras" placeholder="Extras">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25"></div>
+        <div class="col-75">
+            <button onclick="javascript:addTask();">Add Task</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function addTask(){
+        var source = document.getElementById('source').value;
+        var destination = document.getElementById('destination').value;
+        var provider = document.getElementById('provider').value;
+        var action = document.getElementById('action').value;
+        var schedule = document.getElementById('schedule').value;
+        var extras = document.getElementById('extras').value;
+
+        if (source == "" || destination == "" || provider == "" || action == "" || schedule == ""){
+            alert("Please fill in all fields");
+            return;
+        }
+
+        var url = `<?=$httpPluginRoot?>/addTask.php?source=${source}&destination=${destination}&provider=${provider}&action=${action}&schedule=${schedule}&extras=${extras}`;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.status == "success"){
+                    alert("Task added successfully");
+                }else{
+                    alert("Failed to add task");
+                }
+
+                location.reload();
+            }
+        }
+        xhr.send();
+    
+    }
+
+    // Add an event listener for page is ready
+    document.addEventListener( 'DOMContentLoaded', () => {
+
+    // Add an event listener to the provider dropdown
+    
+
+    });
+</script>

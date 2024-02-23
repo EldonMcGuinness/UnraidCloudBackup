@@ -1,0 +1,61 @@
+Menu="CloudBackup:3"
+Title="Existing Authentication"
+Tag="table"
+Markdown="false"
+---
+<?
+#Pull some default data
+libxml_use_internal_errors(true); # Suppress any warnings from xml errors.
+
+$scriptName = "CloudBackup";
+$docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
+$pluginRoot = "$docroot/plugins/$scriptName";
+$httpPluginRoot = "/plugins/$scriptName";
+
+// Include Rclone tools
+include_once( "./plugins/$scriptName/includes/rclone.php" );
+
+// Load the rclone config
+Rclone::load();
+
+?>
+
+<link rel="stylesheet" href="<?=$httpPluginRoot?>/includes/style.css"></style>
+<script type="text/javascript" src="<?=$httpPluginRoot?>/includes/GUI.js"></script>
+
+<script type="text/javascript">
+
+    function deleteProvider( name ){
+        if ( confirm("Are you sure you want to delete " + name + "?") ){
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "<?=$httpPluginRoot?>/deleteProvider.php?name=" + name, true);
+            xmlhttp.send();
+
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    location.reload();
+                }
+            }
+        }
+    }
+
+</script> 
+<div class="inner-wrapper">
+    <div class="row">
+    <? foreach( Rclone::getProviders() as $key => $var) : ?>
+        <div class="card center">
+            <div class="header">
+                <img src="<?=$httpPluginRoot.'/images/'.$var['type'].'.png'?>" title="<?=ucfirst($var['type'])?>"/>
+            </div>
+            <div class="body row center">
+                <h2 class="name"><?=$key?></h2>
+            </div>
+            <div class="row center">
+                <button onclick="javascript:deleteProvider('<?=$key?>')">
+                    Delete
+                </button>
+            </div>
+        </div>
+    <? endforeach; ?>
+    </div>
+</div>
