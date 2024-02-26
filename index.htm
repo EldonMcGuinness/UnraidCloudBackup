@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<title>UnRaid Cloud Backup oAuth2 Client</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  	<link rel="stylesheet" href="style/style.css"></style>
+	<script type="text/javascript" src="scripts/querystring.js"></script>
+</head>
+
+<body class="container">
+	<div>
+		<img src="images/server-backup-icon-256.png" />
+	</div>
+	<h1>oAuth2 Client</h1>
+  	<p>
+    	Only continue if the server you want to link has the following URL:<br/>
+		<b id="sourceServer">Please Wait...</b>
+  	</p>
+    <div id="debug"></div>
+  	<button onclick="javascript:startAuthentication();"><b>Authenticate</b></button>    
+</body>
+<script type="text/javascript" src="scripts/oAuth2.js"></script>
+<script type="text/javascript">
+
+let qs = querystring();
+let oAuth = null;
+
+// Function to start the authentication process
+function startAuthentication() {
+
+	// Redirect to the oAuth provider
+	window.location.replace( oAuth.authCall() );
+}
+
+// When the document is ready
+document.addEventListener("DOMContentLoaded", function(event) {
+
+	// Clear local storage
+	localStorage.clear();
+
+	// Set local storage
+	localStorage.setItem('oAuthName', atob(qs['oAuthName']));
+	localStorage.setItem('oAuthCallback', atob(qs['oAuthCallback']));
+	localStorage.setItem('oAuthSource', atob(qs['oAuthSource']));
+	localStorage.setItem('oAuthProvider', atob(qs['oAuthProvider']));
+	localStorage.setItem('oAuthClientId', atob(qs['oAuthClientId']));
+	localStorage.setItem('oAuthClientSecret', atob(qs['oAuthClientSecret']));
+	localStorage.setItem('oAuthCode', null);
+
+	// Set the source server label
+	document.getElementById('sourceServer').innerText = localStorage.getItem('oAuthSource');
+
+	// Create the oAuth object
+	oAuth = new OAuth(localStorage.getItem('oAuthProvider'), localStorage.getItem('oAuthClientId'));
+});
+
+</script>
+</html>

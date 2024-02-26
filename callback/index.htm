@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<title>UnRaid Cloud Backup oAuth2 Client Callback</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+	<script type="text/javascript" src="../scripts/querystring.js"></script>
+	<script type="text/javascript" src="../scripts/oAuth2.js"></script>
+	<link rel="stylesheet" href="../style/style.css"></style>
+</head>
+
+<body class="container">
+	<div>
+		<img src="../images/server-backup-icon-256.png" />
+	</div>
+  	<h1>oAuth2 Client</h1>
+	Please wait while we fetch your token!
+	<div id="tokenResult"></div>
+</body>
+
+<script type="text/javascript">
+
+// Get the query string
+let qs = querystring();
+
+// Get the hash
+let hash = window.location.hash.replace('#','?');
+
+// Function to convert an object to a query string
+function objToQuery( params ) {
+	let query = "";
+
+	for ( let key in params ){
+    	if ( query !== "" ){
+        	query += "&";
+        }
+    	query += key + "=" + params[key];
+    }
+
+	return query;
+}
+
+// When the document is ready
+document.addEventListener("DOMContentLoaded", function(event) {
+
+	// Store the oAuthCode
+	localStorage.setItem('oAuthCode', qs['code']);
+
+	// Create the oAuth object
+	let oAuth = new OAuth( localStorage.getItem('oAuthProvider'), localStorage.getItem('oAuthClientId'), localStorage.getItem('oAuthClientSecret'), localStorage.getItem('oAuthCode') );
+	
+	// Get the needed information to make the token call
+	const tokenResult = oAuth.tokenCall();
+	let callURI = null;
+	let callParams = null;
+	[ callURI, callParams ] = tokenResult;
+
+	// Make the token call
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", callURI, true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			const redirctURI = localStorage.getItem('oAuthCallback') + "?" + objToQuery(JSON.parse(this.responseText)) + "&oAuthProvider=" + localStorage.getItem('oAuthProvider') + "&oAuthName=" + localStorage.getItem('oAuthName') + "&oAuthClientId=" + localStorage.getItem('oAuthClientId') + "&oAuthClientSecret=" + localStorage.getItem('oAuthClientSecret')
+			
+			// Clear local storage
+			localStorage.clear();
+
+			// Redirect to unraid callback page
+			window.location.href = redirctURI;
+
+		}else{
+			// Display the error
+			document.getElementById('tokenResult').innerText = "Error: []" + this.responseCode + "] - " + this.responseText;
+			
+		}
+	};
+	xhr.send(objToQuery(callParams));
+	
+});
+</script>
+</html>
