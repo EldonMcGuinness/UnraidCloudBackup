@@ -1,6 +1,6 @@
 ---
-name: Backend Support Request
-about: "[Backend Support Request]"
+name: Request for New Backend/Destination Support
+about: Used when people are requesting support for other rclone backends
 title: "[Backend Support Request] - PROVIDER HERE"
 labels: Backend Support Request
 assignees: EldonMcGuinness
