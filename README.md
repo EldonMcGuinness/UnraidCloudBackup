@@ -14,12 +14,10 @@ make a *pull request*, please file an [issue](https://github.com/EldonMcGuinness
 This project is currently a beta product, which means I'm looking for testers! If you are interested, you can install the plugin using the following URI until I am happy it is a finished product and have it submitted to the Unraid CA.
 
 # Two, parts?
-
 My original goal was to get this working with an oAuth2 provider, so the need for a server to have a [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) arose. To that end, the auth_server folder in this project contains a very simple php/js based app that allows you to complete the handshake. I am currently hosting an instance of it that everyone is free to use at this time, I'm hoping to move ti to a github page in the future.
 
 ### Using the provided server
-You should be able to complete the oAuth2 handshake using the server I am hosting, you only need to register your own app with your oAuth2
-based provider. This is free and not terribly difficult. You do need to put [ https://cloudbackup.progressivethink.in/UnraidCloudBackup/callback ] as a valid *Callback URI*.
+You should be able to complete the oAuth2 handshake using the server I am hosting through github, you only need to register your own app with your oAuth2 based provider. This is free and not terribly difficult. You do need to put [ https://eldonmcguinness.github.io/UnraidCloudBackup/callback ] as a valid *Callback URI*.
 
 
 ### Can I host my own
