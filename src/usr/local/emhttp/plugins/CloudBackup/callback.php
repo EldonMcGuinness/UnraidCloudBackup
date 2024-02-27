@@ -123,7 +123,3 @@ Rclone::addProvider($oAuthName, [
 </body>
 
 </html>
-
-<?php
-fclose($logFile);
-?>

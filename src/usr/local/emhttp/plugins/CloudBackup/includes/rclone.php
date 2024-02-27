@@ -41,7 +41,7 @@ class Rclone {
                 if ($key == "type")
                     $value = Rclone::sanitizeProvider($value);
 
-                $config .= $key . " = " . $value . "\n";
+                $config .= '"' . $key . '" = "' . $value . '"' . "\n";
             }
             $config .= "\n";
         }

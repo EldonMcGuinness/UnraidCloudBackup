@@ -73,7 +73,7 @@ class Cron {
     }
 
     private static function updateUnraidCron(){
-        //exec("update_cron");
+        exec("update_cron");
     }
 
     private static function isEmpty( $job){
