@@ -238,7 +238,7 @@ class CloudBackup {
         let oAuthClientSecret = btoa( CloudBackup.currentClientSecret );
         let oAuthCallback = btoa(CloudBackup.getCallback());
         let oAuthSource = btoa(CloudBackup.getSource());
-        let oAuthServer = "https://cloudbackup.progressivethink.in/UnraidCloudBackup/start";
+        let oAuthServer = "https://eldonmcguinness.github.io/UnraidCloudBackup";
 
 
         if ( !CloudBackup.currentProvider || !CloudBackup.currentName || !CloudBackup.currentClientId || !CloudBackup.currentClientSecret ){
