@@ -17,7 +17,7 @@ class OAuth {
 	// Auth urls for the providers
 	#authUris = {
 		dropbox: 'https://www.dropbox.com/oauth2/authorize',
-		googledrive: 'https://accounts.google.com/o/oauth2/v2/auth',
+		googledrive: 'https://accounts.google.com/o/oauth2/auth',
 		box: 'https://account.box.com/api/oauth2/authorize',
 
 	};

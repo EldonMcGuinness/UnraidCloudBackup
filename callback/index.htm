@@ -65,6 +65,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
+			console.log("Type");
+			console.log(this.responseType)
+			console.log("Response");
+			console.log(this.responseText);
+			let query = this.responseText;
+
+			localStorage.setItem('query', this.responseText);
 			const redirctURI = localStorage.getItem('oAuthCallback') + "?" + objToQuery(JSON.parse(this.responseText)) + "&oAuthProvider=" + localStorage.getItem('oAuthProvider') + "&oAuthName=" + localStorage.getItem('oAuthName') + "&oAuthClientId=" + localStorage.getItem('oAuthClientId') + "&oAuthClientSecret=" + localStorage.getItem('oAuthClientSecret')
 			
 			// Clear local storage
