@@ -1,9 +1,11 @@
+// GUI class to help build the settings page for the plugin
 class GUI {
 
     constructor(test = null){
 
     }
 
+    // append the field to the settings page
     appendField( obj ){
         let field = null;
 
@@ -29,6 +31,7 @@ class GUI {
 
     }
 
+    // create a wrapper for the field
     #fieldWrapper(){
         let container = document.createElement("div");
         container.classList.add("row");
@@ -44,6 +47,7 @@ class GUI {
         return container;
     }
 
+    // create a text field
     fieldText( name, placeholder, hint, value, changeFunction = () => {}, blurFunction = () => {}){
         let container = this.#fieldWrapper();
 
@@ -61,6 +65,7 @@ class GUI {
         return container;       
     }
 
+    // create a password field
     fieldPassword( name, placeholder, hint, value, changeFunction = () => {}, blurFunction = () => {}){ 
         let container = this.#fieldWrapper();
 
@@ -77,6 +82,7 @@ class GUI {
         return container;
     }
 
+    // create a checkbox field
     fieldCheckbox( name, hint, value, changeFunction = () => {} ){
         let container = this.#fieldWrapper();
 
@@ -91,6 +97,7 @@ class GUI {
         return container;
     }
 
+    // create an option field
     fieldOption( name, text, value ){
         let field = document.createElement("option");
         field.name = name;
@@ -99,6 +106,7 @@ class GUI {
         return field;
     }
 
+    // create a custom field
     fieldCustom( type, name, text, hint, value, changeFunction = () => {}, blurFunction = () => {} ){
         let container = document.createElement("div");
         let field = document.createElement(type);
