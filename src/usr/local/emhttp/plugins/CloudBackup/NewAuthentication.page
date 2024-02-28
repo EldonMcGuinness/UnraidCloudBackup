@@ -120,6 +120,49 @@ class CloudBackup {
                 },
             ],
         },
+        onedrive:{
+            title: 'OneDrive',
+            name: 'onedrive',
+            fields:[
+                {
+                    name:'name', 
+                    type:'text', 
+                    placeholder:'Friendly Name', 
+                    hint:'A name for this particular cloud destination', 
+                    value:'',
+                    changeFunction:(e) => {
+                    },
+                    blurFunction: (e) => {
+                        let badChars =  e.target.value.match(/[^a-z0-9_\-\.]/gi);
+                        if ( badChars ){
+                            window.alert("Provider name can only contain letters, numbers, underscores, hyphens, and periods");
+                        }else{
+                            CloudBackup.currentName = e.target.value;
+                        }
+                    }
+                },
+                {
+                    name:'client_id', 
+                    type:'text', 
+                    placeholder:'Client ID', 
+                    hint:'A client id generated via onedrives\'s developer portal', 
+                    value:'',
+                    blurFunction: (e) => {
+                        CloudBackup.currentClientId = e.target.value;
+                    }
+                },
+                {
+                    name:'client_secret', 
+                    type:'text', 
+                    placeholder:'Client Secret', 
+                    hint:'A client secret generated via onedrive\'s developer portal', 
+                    value:'',
+                    blurFunction: (e) => {
+                        CloudBackup.currentClientSecret = e.target.value;
+                    }
+                },
+            ],
+        },
         googledrive:{
             title: 'Google Drive',
             name: 'googledrive',
