@@ -61,6 +61,7 @@ class OAuth {
 			code: null,
 			redirect_uri: 'https://eldonmcguinness.github.io/UnraidCloudBackup/callback',
 			client_id: null,
+			//prompt: 'consent',
 			client_secret: null,
 		},
 		googledrive: {
@@ -68,6 +69,8 @@ class OAuth {
 			code: null,
 			redirect_uri: 'https://eldonmcguinness.github.io/UnraidCloudBackup/callback',
 			client_id: null,
+			prompt: 'select_account consent',
+			//approval_prompt: 'force',
 			client_secret: null,
 		},
 		dropbox: {
@@ -75,6 +78,7 @@ class OAuth {
 			code: null,
 			redirect_uri: 'https://eldonmcguinness.github.io/UnraidCloudBackup/callback',
 			client_id: null,
+			//prompt: 'consent',
 			client_secret: null,
 		}
 	};
