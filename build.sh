@@ -18,6 +18,9 @@ fi
 FILE=$SCRIPT.$DATE-$VER.txz
 
 cd src
+
+usr/bin/rclone selfupdate
+
 tar -vcJf ../$FILE usr
 cd ..
 

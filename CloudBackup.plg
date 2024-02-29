@@ -3,14 +3,14 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name                   "CloudBackup">
 <!ENTITY author                 "Eldon McGuinness">
-<!ENTITY version                "2024.02.28-002">
+<!ENTITY version                "2024.02.28-003">
 <!ENTITY launch                 "Settings/CloudBackup"> 
 <!ENTITY pluginURL              "https://github.com/EldonMcGuinness/UnraidCloudBackup/raw">
 <!ENTITY boot                   "/boot/config/plugins/&name;">
 <!ENTITY emhttp                 "/usr/local/emhttp/plugins/&name;">
 <!ENTITY source                 "&boot;/&name;">
 <!ENTITY supportURL             "https://github.com/EldonMcGuinness/UnraidCloudBackup/issues">
-<!ENTITY md5                    "7142f0cde246784196982758c8a00fcb">
+<!ENTITY md5                    "bd73ba93a90088eed1e2e43f509c0435">
 <!ENTITY branch                 "master">
 ]>
 

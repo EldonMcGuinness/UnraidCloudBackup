@@ -15,7 +15,7 @@ Cron::load( "/boot/config/plugins/CloudBackup/monitor.cron" );
 // Create the job
 $job = [
     "schedule" => $_GET['schedule'],
-    "command" => "/usr/bin/rclone " . $_GET['action'] . " " . $_GET['source'] . " " . $_GET['provider'] . ":" . $_GET['destination'] . " --config /boot/config/plugins/CloudBackup/rclone.conf --drive-chunk-size 128M --log-file /var/log/CloudBackup.rclone.log --log-level INFO --stats 30s",
+    "command" => "/usr/bin/rclone " . $_GET['action'] . " " . $_GET['source'] . " " . $_GET['provider'] . ":" . $_GET['destination'] . " --config /boot/config/plugins/CloudBackup/rclone.conf --drive-chunk-size 128M --log-file /var/log/CloudBackup.rclone.".$_GET['provider'].".log --log-level INFO --stats 30s",
 ];
 
 if ($job['command'] == null) {
