@@ -21,6 +21,7 @@ class OAuth {
 		googledrive: 'https://accounts.google.com/o/oauth2/auth',
 		box: 'https://account.box.com/api/oauth2/authorize',
 		onedrive: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
+		//onedrive: 'https://login.live.com/oauth20_authorize.srf',
 
 	};
 
@@ -29,7 +30,8 @@ class OAuth {
 		dropbox: 'https://www.dropbox.com/oauth2/token',
 		googledrive: 'https://oauth2.googleapis.com/token',
 		box: 'https://api.box.com/oauth2/token',
-		ondedrive: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
+		onedrive: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
+		//onedrive: 'https://login.live.com/oauth20_token.srf',
 
 	};
 	
@@ -46,7 +48,6 @@ class OAuth {
 			client_id: null,
 			redirect_uri: 'https://eldonmcguinness.github.io/UnraidCloudBackup/callback', // The URL where you is redirected back, and where you perform run the callback() function,
 			response_type: 'code',
-			access_type: 'offline',
 			scope: 'offline_access%20User.Read%20Files.Read%20Files.Read.All%20Files.ReadWrite%20Files.ReadWrite.All',
 		},
 		googledrive: {
