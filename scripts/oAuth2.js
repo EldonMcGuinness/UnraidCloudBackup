@@ -47,7 +47,7 @@ class OAuth {
 			redirect_uri: 'https://eldonmcguinness.github.io/UnraidCloudBackup/callback', // The URL where you is redirected back, and where you perform run the callback() function,
 			response_type: 'code',
 			access_type: 'offline',
-			scope: 'onedrive.readwrite',
+			scope: 'offline_access%20User.Read%20Files.Read%20Files.Read.All%20Files.ReadWrite%20Files.ReadWrite.All',
 		},
 		googledrive: {
 			client_id: null,
