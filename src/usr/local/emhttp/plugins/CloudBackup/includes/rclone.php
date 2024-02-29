@@ -30,7 +30,7 @@ class Rclone {
         }
     
         // Convert the associative array to a JSON string
-        $json_string = json_encode($formatted_data);
+        $json_string = json_encode($formatted_data, JSON_UNESCAPED_SLASHES);
     
         return $json_string;
     }
