@@ -104,19 +104,4 @@ class Rclone {
 
 //Rclone::load();
 //print_r(Rclone::getProviders());
-
-
-/*
-Array
-(
-    [M2] => Array
-        (
-            [type] => dropbox
-            [client_id] => oqe677eocfrspw6
-            [client_secret] => tel2ugyyh9d3dj3
-            [token] => {access_token:sl.BwGomth_n4l1D_dk7ULxFewQjgep3eXY784IePf52zIeHeJUuJQSNbj4NYuEqSFBulxM6YUjfxYSkEp55rtCjtKK5lRDW7gM4qZ3q4u5GDt-yGHY60vhuVO4AeGQBfPtS2Wd0r4alwT8zL0,token_type:bearer,refresh_token:bnBMTJZr_jcAAAAAAAAAAQrz61ekMONuurFaHf145M7ifKj7QTLRzvTZRl9Blhum,expiry:2024-02-21T22:32:31.921181-05:00}
-        )
-
-)
-*/
 ?>
